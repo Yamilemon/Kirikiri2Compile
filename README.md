@@ -91,7 +91,7 @@
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img18.jpg)
 
-其实就是把前面几个相对路径的点改成$(BCB)这个值，然后下一步把krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\_release.bat的33行，换成bcb5的安装路径下的bin目录中的bcb文件。
+其实就是把前面几个相对路径的点改成$(BCB)这个值，然后下一步把krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\\_release.bat的33行，换成bcb5的安装路径下的bin目录中的bcb文件。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img19.jpg)
 
