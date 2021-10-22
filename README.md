@@ -41,33 +41,33 @@
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img6.jpg)
 
-然后解压boost库，这里只要编译regex库就可以了，去到\libs\regex\build中，启动命令行，打出命令：make -fbcb5.mak
+然后解压boost库，这里只要编译regex库就可以了，去到`\libs\regex\build`中，启动命令行，打出命令：make -fbcb5.mak
 
 ![警告多没关系，能用就是了](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img7.jpg)
 
 警告多没关系，能用就是了
 
-回车以后，稍等一会编译完成，进到\libs\regex\build\bcb5文件夹中，有一个叫boost_regex_bcb5_mss.lib的静态链接库
+回车以后，稍等一会编译完成，进到`\libs\regex\build\bcb5`文件夹中，有一个叫boost_regex_bcb5_mss.lib的静态链接库
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img8.jpg)
 
-拷出来，放到krkr2源码的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\bcb2006\lib里，这里面已经有一个boost_regex_bcb2006.lib了，无视，把bcb5的也放进来
+拷出来，放到krkr2源码的`\kirikiri2\trunk\kirikiri2\src\core\environ\win32\bcb2006\lib`里，这里面已经有一个boost_regex_bcb2006.lib了，无视，把bcb5的也放进来
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img9.jpg)
 
-然后，打开到你的bcb5的安装目录，去到\Borland\CBuilder5\Lib下，把krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\bcb2006\lib里，除了boost_regex_bcb2006.lib以外的所有静态链接库都都拷到bcb5下的\Borland\CBuilder5\Lib里面去。
+然后，打开到你的bcb5的安装目录，去到`\Borland\CBuilder5\Lib`下，把krkr2工程下的`\kirikiri2\trunk\kirikiri2\src\core\environ\win32\bcb2006\lib`里，除了boost_regex_bcb2006.lib以外的所有静态链接库都都拷到bcb5下的`\Borland\CBuilder5\Lib`里面去。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img10.jpg)
 
-再去到bcb5的安装目录下的\Borland\CBuilder5\Include，然后把krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\bcb2006\include中所有的文件夹都拷到\Borland\CBuilder5\Include里面去。
+再去到bcb5的安装目录下的`\Borland\CBuilder5\Include`，然后把krkr2工程下的`\kirikiri2\trunk\kirikiri2\src\core\environ\win32\bcb2006\include`中所有的文件夹都拷到`\Borland\CBuilder5\Include`里面去。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img11.jpg)
 
-然后，开始重新编译bcb5的RTL，先打开krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\base\win32\SysInitIntf.cpp文件，看到第150行这里的地方。
+然后，开始重新编译bcb5的RTL，先打开krkr2工程下的`\kirikiri2\trunk\kirikiri2\src\core\base\win32\SysInitIntf.cpp`文件，看到第150行这里的地方。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img12.jpg)
 
-这里有两段代码需要插入到bcb5的RTL中进行重新编译的，打开bcb5的安装目录下的RTL位置\Borland\CBuilder5\Source\RTL\source\except，这个目录下有个xx.cpp的文件。
+这里有两段代码需要插入到bcb5的RTL中进行重新编译的，打开bcb5的安装目录下的RTL位置`\Borland\CBuilder5\Source\RTL\source\except`，这个目录下有个xx.cpp的文件。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img13.jpg)
 
@@ -79,27 +79,27 @@
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img15.jpg)
 
-保存退出后，把bcb5的RTL目录下的tool文件夹\Borland\CBuilder5\Source\RTL\tools配到环境变量PATH中，返回上一级，去到bcb5的RTL目录下\Borland\CBuilder5\Source\RTL，这里有个build.bat，以管理员权限的命令行执行，对RTL进行重新编译。
+保存退出后，把bcb5的RTL目录下的tool文件夹`\Borland\CBuilder5\Source\RTL\tools`配到环境变量PATH中，返回上一级，去到bcb5的RTL目录下`\Borland\CBuilder5\Source\RTL`，这里有个build.bat，以管理员权限的命令行执行，对RTL进行重新编译。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img16.jpg)
 
-稍等几分钟等编译完成，然后把RTL文件夹下的lib目录\Borland\CBuilder5\Source\RTL\lib下的所有文件，拷到bcb5安装目录下的lib目录\Borland\CBuilder5\Lib下，直接覆盖即可。
+稍等几分钟等编译完成，然后把RTL文件夹下的lib目录`\Borland\CBuilder5\Source\RTL\lib`下的所有文件，拷到bcb5安装目录下的lib目录\Borland\CBuilder5\Lib下，直接覆盖即可。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img17.jpg)
 
-然后修改krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\tvpwin32.bpr的第78行和第79行的LIBFILES标签成下面这个样子。
+然后修改krkr2工程下的`\kirikiri2\trunk\kirikiri2\src\core\environ\win32\tvpwin32.bpr`的第78行和第79行的LIBFILES标签成下面这个样子。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img18.jpg)
 
-其实就是把前面几个相对路径的点改成$(BCB)这个值，然后下一步把krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\\_release.bat的33行，换成bcb5的安装路径下的bin目录中的bcb文件。
+其实就是把前面几个相对路径的点改成$(BCB)这个值，然后下一步把krkr2工程下的`\kirikiri2\trunk\kirikiri2\src\core\environ\win32\\_release.bat`的33行，换成bcb5的安装路径下的bin目录中的bcb文件。
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img19.jpg)
 
-下一步把krkr2工程下\kirikiri2\trunk\kirikiri2\src\core\base\win32\makestub.pl文件中327行中的正则表达式，改为：/\/\*\[C\*\/(.*?)\/\*C]\*\//gs
+下一步把krkr2工程下`\kirikiri2\trunk\kirikiri2\src\core\base\win32\makestub.pl`文件中327行中的正则表达式，改为：`/\/\*\[C\*\/(.*?)\/\*C]\*\//gs`
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img20.jpg)
 
-好了，到这里，krkr2的编译准备工作就完成了，下面可以开始编译了。找到krkr2工程下的\kirikiri2\trunk\kirikiri2\src\core\environ\win32\release.bat，在管理员权限下的命令行下执行它
+好了，到这里，krkr2的编译准备工作就完成了，下面可以开始编译了。找到krkr2工程下的`\kirikiri2\trunk\kirikiri2\src\core\environ\win32\release.bat`，在管理员权限下的命令行下执行它
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img21.jpg)
 
@@ -107,7 +107,7 @@
 
 ![img](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img22.jpg)
 
-到这里，krkr2就编译完成了，具体输出位置在\kirikiri2\trunk\kirikiri2\bin\win32下
+到这里，krkr2就编译完成了，具体输出位置在`\kirikiri2\trunk\kirikiri2\bin\win32`下
 
 ![版本号是2.31的，好像比最新的2.32低了一个版本，不过差别不大](https://github.com/Yamilemon/Kirikiri2Compile/blob/main/img23.jpg)
 
